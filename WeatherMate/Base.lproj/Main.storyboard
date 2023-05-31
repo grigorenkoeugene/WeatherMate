@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oUU-PT-VR5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="r8O-v2-eZy">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Weather View-->
+        <!--Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="WeatherView" customModule="WeatherMate" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,49 +18,50 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" id="K1H-P2-jai"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="e0H-cY-X8O"/>
                     <navigationItem key="navigationItem" id="QNf-3I-RcU"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1963.0769230769231" y="3.5545023696682461"/>
+            <point key="canvasLocation" x="3821.5384615384614" y="3.5545023696682461"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="AeD-B9-i1l">
+        <scene sceneID="7O6-sw-8FB">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oUU-PT-VR5" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="r8O-v2-eZy" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" id="K1H-P2-jai"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6yd-Zq-ykL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZaX-9O-kdY">
                         <rect key="frame" x="0.0" y="47" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="99a-4E-9K7" kind="relationship" relationship="rootViewController" id="exc-fp-leO"/>
+                        <segue destination="tUA-bi-kQS" kind="relationship" relationship="rootViewController" id="Agj-RL-OKq"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="g7I-5g-OIE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GhF-qd-z4C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="104.61538461538461" y="3.5545023696682461"/>
+            <point key="canvasLocation" x="1963.0769230769231" y="3.5545023696682461"/>
         </scene>
         <!--Tab Bar Controller-->
-        <scene sceneID="27e-IH-6O1">
+        <scene sceneID="GAR-NV-WnT">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="99a-4E-9K7" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="cell" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tUA-bi-kQS" customClass="TabBarController" customModule="WeatherMate" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="qXj-E5-6OF"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vap-0F-VNe">
+                    <navigationItem key="navigationItem" id="hF4-cM-CVO"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mwh-b1-z92">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="3jx-Qs-g8h"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="b3F-rm-Gef"/>
                     </connections>
                 </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mTx-1n-yGv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QdW-HZ-jRs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1033.8461538461538" y="3.5545023696682461"/>
+            <point key="canvasLocation" x="2892.3076923076924" y="3.5545023696682461"/>
         </scene>
     </scenes>
     <resources>

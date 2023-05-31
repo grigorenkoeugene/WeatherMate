@@ -32,7 +32,7 @@ class WeatherSubView: UIView {
     private var weatherWindImage = UIImageView(named: "weatherWind")
     private var directionWindImage = UIImageView(named: "directionWind")
     private var pressureImage = UIImageView(named: "pressure")
-
+    private var locatonImage = UIImageView(named: "location")
     
     private var mauntainImage: UIImageView = {
         let imageView = UIImageView()
@@ -42,15 +42,7 @@ class WeatherSubView: UIView {
         return imageView
     }()
     
-    private var locatonImage: UIImageView = {
-        let imageView = UIImageView()
-        let image = UIImage(named: "location")
-        imageView.image = image
-        imageView.image = imageView.image!.withRenderingMode(.alwaysTemplate)
-        imageView.tintColor = UIColor.white
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
+
 
     init() {
         super.init(frame: .zero)
@@ -67,7 +59,7 @@ private extension WeatherSubView {
 
     func initialize() {
         clipsToBounds = true
-        backgroundColor = #colorLiteral(red: 0.09803921569, green: 0.3568627451, blue: 0.8196078431, alpha: 1)
+        backgroundColor = UIColor(hexString: "#195BD1")
         layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         layer.cornerRadius = 25
         addSubview(mauntainImage)
@@ -183,6 +175,7 @@ private extension UILabel {
     convenience init(font: CGFloat) {
         self.init()
         self.font = self.font.withSize(font)
+        
         self.textColor = .white
     }
 }
@@ -191,6 +184,8 @@ private extension UIImageView {
     convenience init(named: String) {
         self.init()
         self.image = UIImage(named: named)
+        self.image = self.image!.withRenderingMode(.alwaysTemplate)
+        self.tintColor = .white
         self.contentMode = .scaleAspectFit
         
     }

@@ -13,10 +13,16 @@
 		8440212E2A2093640048FFDC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8440212C2A2093640048FFDC /* Main.storyboard */; };
 		844021302A2093690048FFDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8440212F2A2093690048FFDC /* Assets.xcassets */; };
 		844021332A2093690048FFDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844021312A2093690048FFDC /* LaunchScreen.storyboard */; };
+		8489DE802A273D7F0029AADA /* UIColor + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489DE7F2A273D7F0029AADA /* UIColor + ext.swift */; };
+		8489DE822A273E0B0029AADA /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489DE812A273E0B0029AADA /* Resource.swift */; };
+		8489DE842A27436E0029AADA /* TabBarController .swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489DE832A27436E0029AADA /* TabBarController .swift */; };
 		84A524E92A20A40B003A315D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 84A524E82A20A40B003A315D /* SnapKit */; };
 		84A524EC2A20A5A1003A315D /* WeatherSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A524EB2A20A5A1003A315D /* WeatherSubView.swift */; };
 		84A524EE2A20E8AC003A315D /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A524ED2A20E8AC003A315D /* WeatherModel.swift */; };
 		84AA89332A24A64E004513E8 /* WeatherColectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA89322A24A64E004513E8 /* WeatherColectionView.swift */; };
+		84AA893D2A24FEDF004513E8 /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA893B2A24FEDF004513E8 /* WeatherCollectionViewCell.swift */; };
+		84AA893E2A24FEDF004513E8 /* WeatherCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84AA893C2A24FEDF004513E8 /* WeatherCollectionViewCell.xib */; };
+		84AA89402A25EAFA004513E8 /* WeatherGraphicRaineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA893F2A25EAFA004513E8 /* WeatherGraphicRaineView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,9 +34,15 @@
 		8440212F2A2093690048FFDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		844021322A2093690048FFDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		844021342A2093690048FFDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8489DE7F2A273D7F0029AADA /* UIColor + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + ext.swift"; sourceTree = "<group>"; };
+		8489DE812A273E0B0029AADA /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		8489DE832A27436E0029AADA /* TabBarController .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBarController .swift"; sourceTree = "<group>"; };
 		84A524EB2A20A5A1003A315D /* WeatherSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSubView.swift; sourceTree = "<group>"; };
 		84A524ED2A20E8AC003A315D /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		84AA89322A24A64E004513E8 /* WeatherColectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherColectionView.swift; sourceTree = "<group>"; };
+		84AA893B2A24FEDF004513E8 /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
+		84AA893C2A24FEDF004513E8 /* WeatherCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherCollectionViewCell.xib; sourceTree = "<group>"; };
+		84AA893F2A25EAFA004513E8 /* WeatherGraphicRaineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherGraphicRaineView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,9 +76,11 @@
 		844021252A2093640048FFDC /* WeatherMate */ = {
 			isa = PBXGroup;
 			children = (
+				8489DE7D2A273D4F0029AADA /* Helper */,
 				8440213C2A2093CA0048FFDC /* View */,
 				8440213B2A2093C10048FFDC /* ViewModel */,
 				8440213A2A2093B70048FFDC /* Model */,
+				8489DE832A27436E0029AADA /* TabBarController .swift */,
 				844021262A2093640048FFDC /* AppDelegate.swift */,
 				844021282A2093640048FFDC /* SceneDelegate.swift */,
 				8440212C2A2093640048FFDC /* Main.storyboard */,
@@ -100,6 +114,23 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		8489DE7D2A273D4F0029AADA /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				8489DE7E2A273D5D0029AADA /* Extention */,
+				8489DE812A273E0B0029AADA /* Resource.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		8489DE7E2A273D5D0029AADA /* Extention */ = {
+			isa = PBXGroup;
+			children = (
+				8489DE7F2A273D7F0029AADA /* UIColor + ext.swift */,
+			);
+			path = Extention;
+			sourceTree = "<group>";
+		};
 		84A524EA2A20A4D4003A315D /* WeatherSubView */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,11 +142,22 @@
 		84AA89312A24A5F4004513E8 /* MainWeatherScrian */ = {
 			isa = PBXGroup;
 			children = (
+				84AA89342A24EAD3004513E8 /* Cell */,
 				84A524EA2A20A4D4003A315D /* WeatherSubView */,
 				84AA89322A24A64E004513E8 /* WeatherColectionView.swift */,
+				84AA893F2A25EAFA004513E8 /* WeatherGraphicRaineView.swift */,
 				8440212A2A2093640048FFDC /* WeatherView.swift */,
 			);
 			path = MainWeatherScrian;
+			sourceTree = "<group>";
+		};
+		84AA89342A24EAD3004513E8 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				84AA893B2A24FEDF004513E8 /* WeatherCollectionViewCell.swift */,
+				84AA893C2A24FEDF004513E8 /* WeatherCollectionViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				844021332A2093690048FFDC /* LaunchScreen.storyboard in Resources */,
+				84AA893E2A24FEDF004513E8 /* WeatherCollectionViewCell.xib in Resources */,
 				844021302A2093690048FFDC /* Assets.xcassets in Resources */,
 				8440212E2A2093640048FFDC /* Main.storyboard in Resources */,
 			);
@@ -195,12 +238,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84AA89402A25EAFA004513E8 /* WeatherGraphicRaineView.swift in Sources */,
 				8440212B2A2093640048FFDC /* WeatherView.swift in Sources */,
 				844021272A2093640048FFDC /* AppDelegate.swift in Sources */,
+				8489DE822A273E0B0029AADA /* Resource.swift in Sources */,
 				844021292A2093640048FFDC /* SceneDelegate.swift in Sources */,
 				84A524EC2A20A5A1003A315D /* WeatherSubView.swift in Sources */,
 				84AA89332A24A64E004513E8 /* WeatherColectionView.swift in Sources */,
+				8489DE802A273D7F0029AADA /* UIColor + ext.swift in Sources */,
 				84A524EE2A20E8AC003A315D /* WeatherModel.swift in Sources */,
+				84AA893D2A24FEDF004513E8 /* WeatherCollectionViewCell.swift in Sources */,
+				8489DE842A27436E0029AADA /* TabBarController .swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,8 +402,8 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -363,9 +411,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = WeatherMate.WeatherMate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -383,8 +434,8 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -392,9 +443,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = WeatherMate.WeatherMate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
