@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "name=Time, stay=Default.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

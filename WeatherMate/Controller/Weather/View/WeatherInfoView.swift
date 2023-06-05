@@ -8,7 +8,7 @@
 import SnapKit
 import UIKit
 
-class WeatherSubView: UIView {
+class WeatherInfoView: UIView {
 
     func configur(with info: WeatherModel) {
         dateLable.text = "Сегодня"
@@ -28,12 +28,19 @@ class WeatherSubView: UIView {
     private var pressure = UILabel(font: 19)
     private var time = UILabel(font: 16)
     
-    private var cloudImage = UIImageView(named: "cloud")
+//    private var cloudImage = UIImageView(named: "cloud")
     private var weatherWindImage = UIImageView(named: "weatherWind")
     private var directionWindImage = UIImageView(named: "directionWind")
     private var pressureImage = UIImageView(named: "pressure")
     private var locatonImage = UIImageView(named: "location")
     
+    private var cloudImage: UIImageView = {
+        let imageView = UIImageView()
+        let image = UIImage(named: "cloud")
+        imageView.image = image
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
     private var mauntainImage: UIImageView = {
         let imageView = UIImageView()
         let image = UIImage(named: "mountain")
@@ -55,11 +62,11 @@ class WeatherSubView: UIView {
     
 }
 
-private extension WeatherSubView {
+private extension WeatherInfoView {
 
     func initialize() {
         clipsToBounds = true
-        backgroundColor = UIColor(hexString: "#195BD1")
+        backgroundColor = Resource.Color.weatherInfoViewBackground
         layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         layer.cornerRadius = 25
         addSubview(mauntainImage)
@@ -175,7 +182,6 @@ private extension UILabel {
     convenience init(font: CGFloat) {
         self.init()
         self.font = self.font.withSize(font)
-        
         self.textColor = .white
     }
 }

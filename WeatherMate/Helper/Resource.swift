@@ -10,21 +10,46 @@ import UIKit
 enum Resource {
     enum Color {
         static var active = UIColor(hexString: "#2556BF")
+        
+        static var background = UIColor(hexString: "#F2F2F2")
+        
+        static var weatherInfoViewBackground = UIColor(hexString: "#195BD1")
+        
+        static var sunriseSunset = UIColor(hexString: "#3D5865")
+        static var timeSunriseSunset = UIColor(hexString: "#002942")
+        
+        static var thirdColor = UIColor(hexString: "#6692A6")
+
     }
     
     enum Strings {
         enum TabBar {
-            static var weather = "Погода"
-            static var calendar = "Календарь"
-            static var map = "Карта"
-            static var settings = "Настройки"
+            static let weather = "Погода"
+            static let time = "Календарь"
+            static let map = "Карта"
+            static let setting = "Настройки"
+        }
+        enum Weather {
+            static let precipitation = "Вероятность осадков"
+            static let lightDay = "Световой день"
         }
     }
     
+    
+    
     enum Images {
-        static var weather = UIImage(named: "asf")
-        static var calendar = UIImage(named: "asf")
-        static var map = UIImage(named: "asf")
-        static var settings = UIImage(named: "asf")
+        static var weatherActive = UIImage(named: "weatherActive")
+        static var weatherInactive = UIImage(named: "weatherInActive")
+
+        static var timeActive = UIImage(named: "timeActive")
+        static var timeInactive = UIImage(named: "timeInActive")
+
+        static var mapActive = UIImage(named: "mapActive")
+        static var mapInactive = UIImage(named: "mapInActive")
+
+        static var settingActive = UIImage(named: "settingActive")
+        static var settingInactive = UIImage(named: "settingInActive")
+
     }
+    
 }
