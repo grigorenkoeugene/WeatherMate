@@ -26,8 +26,8 @@ class WeatherController: BaseController {
         subViewWeather.configur(with: info)
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         self.setupScrollView()
         self.setupWeatherSubView()
         self.setupWeatherColectionView()

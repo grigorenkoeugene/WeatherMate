@@ -14,6 +14,7 @@ class WeatherGraphicRaineView: BaseView {
         let label = UILabel()
         label.text = Resource.Strings.Weather.precipitation
         label.font = label.font.withSize(21)
+        
         return label
     }()
     
@@ -27,8 +28,6 @@ class WeatherGraphicRaineView: BaseView {
     
     private let chartsView = WMChartsView()
     
-    
-
 }
 
 extension WeatherGraphicRaineView {
@@ -39,6 +38,7 @@ extension WeatherGraphicRaineView {
         layer.cornerRadius = 24
         constaintViews()
         configureAppearance()
+        print("321",bounds.width)
 
     }
     override func constaintViews() {
@@ -50,7 +50,7 @@ extension WeatherGraphicRaineView {
 
         addSubview(stackView)
         addSubview(chartsView)
-        print(chartsView.bounds.height)
+
 
         stackView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(10)
@@ -62,19 +62,17 @@ extension WeatherGraphicRaineView {
         }
         
         chartsView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(10)
-            make.trailing.equalToSuperview().inset(50)
-
-            make.bottom.equalToSuperview().inset(10)
-            make.height.equalTo(200)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.top.equalTo(stackView.snp.bottom).offset(10)
+            make.bottom.equalToSuperview().inset(16)
         }
     }
     
     override func configureAppearance() {
-        configure(with: [.init(value: 10, title: "Сейчас"),
-                                                .init(value: 10, title: "15:55"),
-                                                .init(value: 10, title: "16:55"),
-                                                .init(value: 15, title: "17:55")],
+        configure(with: [.init(value: 100, title: "Сейчас", percent: "100%"),
+                                                .init(value: 25, title: "15:55", percent: "25%"),
+                                                .init(value: 75, title: "16:55", percent: "75%"),
+                                                .init(value: 10, title: "17:55", percent: "10%")],
                                          topChartOffset: 4)
     }
     func configure(with itmes: [WMChartsView.Data], topChartOffset: Int) {

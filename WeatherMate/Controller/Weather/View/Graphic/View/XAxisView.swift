@@ -9,29 +9,53 @@ import UIKit
 
 final class XAxisView: BaseView {
 
-    private let stackView: UIStackView = {
+    private let timeStackView: UIStackView = {
         let view = UIStackView()
-        view.distribution = .equalSpacing
+        view.distribution = .fillEqually
         return view
     }()
-
+    
+    private let percentStackView: UIStackView = {
+        let view = UIStackView()
+        view.distribution = .fillEqually
+        return view
+    }()
+    
+    private let stackView: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.spacing = 10
+        view.distribution = .fillEqually
+        return view
+    }()
+    
     func configure(with data: [WMChartsView.Data]) {
-        stackView.arrangedSubviews.forEach {
+        timeStackView.arrangedSubviews.forEach {
+            $0.removeFromSuperview()
+        }
+        percentStackView.arrangedSubviews.forEach {
             $0.removeFromSuperview()
         }
 
         data.forEach {
-            let label = UILabel()
-//            lable.font = R.Fonts.helvelticaRegular(with: 9)
-//            lable.textColor = R.Colors.inactive
-            label.font = label.font.withSize(16)
-            label.textColor = Resource.Color.thirdColor
-            label.textAlignment = .center
-            label.text = $0.title
+            let timeLabel = UILabel()
+            timeLabel.font = timeLabel.font.withSize(16)
+            timeLabel.textColor = Resource.Color.thirdColor
+            timeLabel.textAlignment = .center
+            timeLabel.text = $0.title
+            timeStackView.addArrangedSubview(timeLabel)
 
-            stackView.addArrangedSubview(label)
+            let percentLabel = UILabel()
+            percentLabel.font = percentLabel.font.withSize(16)
+            percentLabel.textColor = Resource.Color.active
+            percentLabel.textAlignment = .center
+            percentLabel.text = $0.percent
+            percentStackView.addArrangedSubview(percentLabel)
         }
+        stackView.addArrangedSubview(timeStackView)
+        stackView.addArrangedSubview(percentStackView)
     }
+
 }
 
 extension XAxisView {
@@ -39,17 +63,16 @@ extension XAxisView {
         super.setupViews()
 
         setupView(stackView)
+        
     }
 
     override func constaintViews() {
         super.constaintViews()
 
-        NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackView.topAnchor.constraint(equalTo: topAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
+        stackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
     }
 
     override func configureAppearance() {

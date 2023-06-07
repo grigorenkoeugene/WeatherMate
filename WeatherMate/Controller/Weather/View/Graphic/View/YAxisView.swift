@@ -47,12 +47,11 @@ extension YAxisView {
     override func constaintViews() {
         super.constaintViews()
 
-        NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackView.topAnchor.constraint(equalTo: topAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
+        stackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
+
     }
 
     override func configureAppearance() {

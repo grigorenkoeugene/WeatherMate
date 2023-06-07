@@ -11,6 +11,7 @@ extension WMChartsView {
     struct Data {
         let value: Int
         let title: String
+        let percent: String
     }
 }
 
@@ -31,33 +32,37 @@ extension WMChartsView {
     override func setupViews() {
         super.setupViews()
 
-        setupView(yAxisView)
-        setupView(xAxisView)
-        setupView(chartView)
+        addSubview(yAxisView)
+        addSubview(xAxisView)
+        addSubview(chartView)
     }
 
     override func constaintViews() {
         super.constaintViews()
 
-        NSLayoutConstraint.activate([
-            yAxisView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            yAxisView.topAnchor.constraint(equalTo: topAnchor, constant: -3),
-            yAxisView.bottomAnchor.constraint(equalTo: xAxisView.topAnchor, constant: -48),
-
-            xAxisView.leadingAnchor.constraint(equalTo: yAxisView.trailingAnchor, constant: 8),
-            xAxisView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            xAxisView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 4),
-
-            chartView.leadingAnchor.constraint(equalTo: yAxisView.trailingAnchor, constant: 16),
-            chartView.topAnchor.constraint(equalTo: topAnchor, constant: 4),
-            chartView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 20),
-            chartView.bottomAnchor.constraint(equalTo: xAxisView.topAnchor, constant: -16),
-        ])
+        yAxisView.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.top.equalToSuperview()
+            make.bottom.equalTo(xAxisView.snp.top).offset(-48)
+        }
+        
+        xAxisView.snp.makeConstraints { make in
+            make.leading.equalTo(yAxisView.snp.trailing).offset(20)
+            make.bottom.equalToSuperview().inset(10)
+            make.trailing.equalTo(chartView.snp.trailing).inset(0)
+        }
+        
+        chartView.snp.makeConstraints { make in
+            make.leading.equalTo(yAxisView.snp.trailing).offset(10)
+            make.top.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().inset(20)
+            make.bottom.equalTo(xAxisView.snp.top).offset(-10)
+            
+        }
     }
 
     override func configureAppearance() {
         super.configureAppearance()
-
         backgroundColor = .clear
     }
 }
