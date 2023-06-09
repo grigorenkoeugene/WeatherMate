@@ -43,7 +43,7 @@
                 <outlet property="time" destination="vDc-4P-FTv" id="xbu-QG-zmT"/>
                 <outlet property="title" destination="XFB-eo-1YW" id="QVQ-5S-0Mh"/>
             </connections>
-            <point key="canvasLocation" x="89" y="20"/>
+            <point key="canvasLocation" x="88.549618320610676" y="19.718309859154932"/>
         </tableViewCell>
     </objects>
 </document>

@@ -9,7 +9,6 @@ import UIKit
 
 final class LightDayView: BaseView {
     
-    
     var lightDayLabel: UILabel = {
         let label = UILabel()
         label.text = Resource.Strings.Weather.lightDay

@@ -13,6 +13,8 @@ final class NavBarController: UINavigationController {
     }
     
     private func configure() {
+//        navigationBar.backgroundColor = .white
         navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+
     }
 }

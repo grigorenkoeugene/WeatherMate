@@ -13,7 +13,7 @@ class WeatherController: BaseController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Минск"
+//        title = "Минск"
         view.addSubview(scrollView)
         scrollView.addSubview(contenView)
         contenView.addSubview(subViewWeather)
@@ -80,7 +80,10 @@ class WeatherController: BaseController {
     }
     
     private var contentSize: CGSize {
-        CGSize(width: view.frame.width, height: view.frame.height + 800)
+        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
+
+        return CGSize(width: view.frame.width, height: constellationsTableView.frame.maxY + tabBarHeight + 20) // переделать чтобы работал колекшн вью 
+        
     }
     
 

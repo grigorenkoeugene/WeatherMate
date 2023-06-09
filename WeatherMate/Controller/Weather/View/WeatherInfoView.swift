@@ -178,13 +178,7 @@ private extension WeatherInfoView {
     }
 }
 
-private extension UILabel {
-    convenience init(font: CGFloat) {
-        self.init()
-        self.font = self.font.withSize(font)
-        self.textColor = .white
-    }
-}
+
 
 private extension UIImageView {
     convenience init(named: String) {

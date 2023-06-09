@@ -38,7 +38,6 @@ extension WeatherGraphicRaineView {
         layer.cornerRadius = 24
         constaintViews()
         configureAppearance()
-        print("321",bounds.width)
 
     }
     override func constaintViews() {

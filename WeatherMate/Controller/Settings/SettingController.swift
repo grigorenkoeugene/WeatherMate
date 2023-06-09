@@ -13,5 +13,6 @@ class SettingController: BaseController {
         super.viewDidLoad()
         title = "Минск"
     }
+
     
 }

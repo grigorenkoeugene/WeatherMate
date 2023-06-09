@@ -11,4 +11,7 @@ extension UIView {
     @objc func setupView(_ view: UIView) {
         addSubview(view)
     }
+    @objc func setupTable(_ view: UITableView) {
+        addSubview(view)
+    }
 }

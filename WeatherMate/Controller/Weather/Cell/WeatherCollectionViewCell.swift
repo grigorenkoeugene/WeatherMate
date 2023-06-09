@@ -13,8 +13,20 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var view: UIView!
     
     var stackView = UIStackView()
-    var timeWeatherLabel = UILabel(font: 16)
-    var temprichaLabel = UILabel(font: 19)
+    var timeWeatherLabel: UILabel = {
+        let label = UILabel(font: 16)
+        label.textAlignment = .center
+        label.textColor = .black
+        return label
+    }()
+    
+    var temprichaLabel: UILabel = {
+        let label = UILabel(font: 19)
+        label.textAlignment = .center
+        label.textColor = .black
+        return label
+    }()
+    
     private var cloudImage = UIImageView(named: "cloud")
 
 
@@ -37,15 +49,6 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     
     
 
-}
-private extension UILabel {
-    convenience init(font: CGFloat) {
-        self.init()
-        self.font = self.font.withSize(font)
-        self.text = "test"
-        self.textAlignment = .center
-        self.textColor = .black
-    }
 }
 
 private extension UIImageView {
