@@ -33,6 +33,11 @@ enum Resource {
             static let precipitation = "Вероятность осадков"
             static let lightDay = "Световой день"
         }
+        enum DateWeather {
+            static let winter = "Ветер"
+            static let wet = "Влажность"
+            static let pressure = "Давление"
+        }
     }
     
     
@@ -49,6 +54,11 @@ enum Resource {
 
         static var settingActive = UIImage(named: "settingActive")
         static var settingInactive = UIImage(named: "settingInActive")
+        
+        static var winter = UIImage(named: "winterImage")
+        static var wet = UIImage(named: "dropView")
+        static var pressure = UIImage(named: "pressureView")
+
 
     }
     

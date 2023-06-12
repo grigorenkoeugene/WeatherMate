@@ -1,17 +1,17 @@
 //
-//  WinterView.swift
+//  pressureView.swift
 //  WeatherMate
 //
-//  Created by admin on 08.06.2023.
+//  Created by admin on 09.06.2023.
 //
 
 import SnapKit
 import UIKit
 
-class WinterView: BaseView {
-
+class PressureView: BaseView {
+    
     let titleForView: BaseTitleForView = {
-        let component = BaseTitleForView(imageName: Resource.Images.winter!, labelText: Resource.Strings.DateWeather.winter)
+        let component = BaseTitleForView(imageName: Resource.Images.pressure!, labelText: Resource.Strings.DateWeather.pressure)
         return component
     }()
     let tableView: StackWinterWetPressureTableView
@@ -27,7 +27,7 @@ class WinterView: BaseView {
     }
 }
 
-extension WinterView {
+extension PressureView {
     override func setupViews() {
         super.setupViews()
         addSubview(titleForView)

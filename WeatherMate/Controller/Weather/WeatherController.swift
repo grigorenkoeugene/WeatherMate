@@ -6,8 +6,8 @@ class WeatherController: BaseController {
     var subViewWeather = WeatherInfoView()
     var weatherColectionView = WeatherColectionView()
     var weatherGraphicRaineView = WeatherGraphicRaineView()
-    var lightDayView = LightDayView()
-    var constellationsTableView = ConstellationsTableView()
+    var lightDayView = BaseLightDayView()
+    var constellationsTableView = BaseConstellationsTableView()
     var scrollView = UIScrollView()
     
     

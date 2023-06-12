@@ -8,7 +8,7 @@
 import SnapKit
 import UIKit
 
-class TitleForView: UIView {
+class BaseTitleForView: UIView {
     
     let label: UILabel = {
         let label = UILabel()
@@ -22,10 +22,10 @@ class TitleForView: UIView {
         return imageView
     }()
     
-    init(imageName: String, labelText: String) {
+    init(imageName: UIImage, labelText: String) {
         super.init(frame: .zero)
         
-        image.image = UIImage(named: imageName)
+        image.image = imageName
         label.text = labelText
         
         addSubview(image)
@@ -48,7 +48,6 @@ class TitleForView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // Дополнительные методы и настройки компонента
 }
 
 

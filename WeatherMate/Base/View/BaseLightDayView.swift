@@ -1,13 +1,13 @@
 //
-//  lightDayView.swift
+//  BaseLightDayView.swift
 //  WeatherMate
 //
-//  Created by admin on 01.06.2023.
+//  Created by admin on 09.06.2023.
 //
 
 import UIKit
 
-final class LightDayView: BaseView {
+class BaseLightDayView: BaseView {
     
     var lightDayLabel: UILabel = {
         let label = UILabel()
@@ -75,7 +75,7 @@ final class LightDayView: BaseView {
     }()
     
 }
-extension LightDayView {
+extension BaseLightDayView {
     override func setupViews() {
         super.setupViews()
         
