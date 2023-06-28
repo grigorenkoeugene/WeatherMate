@@ -8,9 +8,9 @@
 import UIKit
 
 extension UILabel {
-    convenience init(font: CGFloat) {
+    convenience init(font: CGFloat, textColor: UIColor) {
         self.init()
         self.font = self.font.withSize(font)
-        self.textColor = .white
+        self.textColor = textColor
     }
 }

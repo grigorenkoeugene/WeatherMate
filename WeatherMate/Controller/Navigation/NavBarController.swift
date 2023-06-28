@@ -10,11 +10,14 @@ import UIKit
 final class NavBarController: UINavigationController {
     override func viewDidLoad() {
         configure()
+
+
     }
     
     private func configure() {
 //        navigationBar.backgroundColor = .white
-        navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
 
     }
 }

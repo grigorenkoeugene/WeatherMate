@@ -12,13 +12,13 @@ extension WeekView {
     final class WeekdayView: BaseView {
 
         private let nameLabel: UILabel = {
-            let lable = UILabel(font: 14)
+            let lable = UILabel(font: 14, textColor: .white)
             lable.textAlignment = .center
             return lable
         }()
 
         private let dateLabel: UILabel = {
-            let lable = UILabel(font: 21)
+            let lable = UILabel(font: 21, textColor: .white)
             lable.textAlignment = .center
             return lable
         }()

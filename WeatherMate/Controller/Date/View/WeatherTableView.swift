@@ -47,6 +47,7 @@ extension WeatherTableView: UITableViewDataSource, UITableViewDelegate {
         }
         
         cell.dayType.text = "Утро"
+        cell.weatherTypeImage.contentMode = .scaleAspectFit
         cell.weatherTypeImage.image = UIImage(named: "cloud")
         cell.percent.text = "23%"
         cell.lowTempricha.text = "+11"
@@ -59,6 +60,6 @@ extension WeatherTableView: UITableViewDataSource, UITableViewDelegate {
         return 65
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        addSeparator(to: cell, at: indexPath)
+        addSeparator(to: cell, at: indexPath, indent: 66)
     }
 }

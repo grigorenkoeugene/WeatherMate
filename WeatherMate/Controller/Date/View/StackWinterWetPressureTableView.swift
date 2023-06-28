@@ -10,9 +10,9 @@ import UIKit
 
 class StackWinterWetPressureTableView: UITableView {
     
-    private var data: [WeatherData] = []
+    private var data: [Weather] = []
 
-    init(data: [WeatherData]) {
+    init(data: [Weather]) {
         super.init(frame: .zero, style: .plain)
         self.data = data
         initialize()
@@ -62,6 +62,6 @@ extension StackWinterWetPressureTableView: UITableViewDataSource, UITableViewDel
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        addSeparator(to: cell, at: indexPath)
+        addSeparator(to: cell, at: indexPath, indent: 66)
     }
 }

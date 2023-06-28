@@ -20,18 +20,21 @@ final class ChartView: BaseView {
         view.backgroundColor = Resource.Color.thirdColor
         return view
     }()
-
-    func configure(with data: [WMChartsView.Data], topChartOffset: Int) {
-        print("Initial width: \(self.bounds.width)")
-
-            layoutIfNeeded()
-            print("After layoutIfNeeded: \(self.bounds.width)")
-
-            drawChart(with: data, topChartOffset: topChartOffset)
-        print("After drawing chart: \(self.bounds.height)")
-            
-            drawDashLines()
-            print("After drawing dash lines: \(bounds.height)")
+    
+    private var chartData: [WMChartView.Data] = []
+    private var topChartOffset: Int = 0
+        
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        drawChart(with: chartData, topChartOffset: topChartOffset)
+        drawDashLines()
+    }
+    
+    func configure(with data: [WMChartView.Data], topChartOffset: Int) {
+        self.chartData = data
+        self.topChartOffset = topChartOffset
+        setNeedsLayout()
     }
 }
 
@@ -66,11 +69,11 @@ extension ChartView {
         super.configureAppearance()
 
         backgroundColor = .clear
-
     }
+    
 }
 
-private extension ChartView {
+extension ChartView {
     func drawDashLines(with counts: Int = 4) {
         (0..<counts).map { CGFloat($0) }.forEach {
             drawDashLineY(at: bounds.height / CGFloat(counts) * $0)
@@ -96,7 +99,6 @@ private extension ChartView {
     func drawDashLineX(at xPosition: CGFloat) {
         let startPoint = CGPoint(x: xPosition + 50, y: bounds.height - 5)
         let endPoint = CGPoint(x: xPosition + 50, y: bounds.height + 4)
-
         let dashPath = CGMutablePath()
         dashPath.addLines(between: [startPoint, endPoint])
         let dashLayer = CAShapeLayer()
@@ -108,15 +110,13 @@ private extension ChartView {
     }
 
     
-    func drawChart(with data: [WMChartsView.Data], topChartOffset: Int) {
+    func drawChart(with data: [WMChartView.Data], topChartOffset: Int) {
         let valuePoints = data.enumerated().map { CGPoint(x: CGFloat($0), y: CGFloat($1.value)) }
-        let chartHeight = bounds.height / 100
-        let xStep = (bounds.width / 1.335)
-        
+        let chartHeight = frame.height / 100
+        let xStep = (frame.width / 1.335)
         let points = valuePoints.map {
             let x = 50 + xStep / CGFloat(valuePoints.count - 1) * $0.x
-            let y = bounds.height - $0.y * chartHeight
-            print(CGPoint(x: x, y: y))
+            let y = frame.height - $0.y * chartHeight
             return CGPoint(x: x, y: y)
         }
         

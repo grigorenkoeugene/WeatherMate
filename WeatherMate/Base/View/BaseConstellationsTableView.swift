@@ -52,7 +52,7 @@ extension BaseConstellationsTableView: UITableViewDataSource, UITableViewDelegat
         return 70
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        addSeparator(to: cell, at: indexPath)
+        addSeparator(to: cell, at: indexPath, indent: 66)
     }
 }
 

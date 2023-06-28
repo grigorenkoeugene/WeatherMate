@@ -29,7 +29,7 @@ final class XAxisView: BaseView {
         return view
     }()
     
-    func configure(with data: [WMChartsView.Data]) {
+    func configure(with data: [WMChartView.Data]) {
         timeStackView.arrangedSubviews.forEach {
             $0.removeFromSuperview()
         }

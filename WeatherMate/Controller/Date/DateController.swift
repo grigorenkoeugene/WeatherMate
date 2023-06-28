@@ -10,6 +10,7 @@ import UIKit
 
 class DateController: BaseController {
     private let scrollView = UIScrollView()
+    
         private let contentView = UIView()
         private let navBar = DateNavBar()
         private let weatherTableView = WeatherTableView()
@@ -20,25 +21,25 @@ class DateController: BaseController {
         private let wetView: WetView
         private let pressureView: PressureView
 
-        let winterData: [WeatherData] = [
-            WeatherData(dayType: "Утро", weatherTypeImageName: "directionWind", percent: "С-В", lowTemperature: "3-6", highTemperature: "м/с"),
-            WeatherData(dayType: "День", weatherTypeImageName: "directionWind", percent: "С-В", lowTemperature: "3-6", highTemperature: "м/с"),
-            WeatherData(dayType: "Вечер", weatherTypeImageName: "directionWind", percent: "С-В", lowTemperature: "3-6", highTemperature: "м/с"),
-            WeatherData(dayType: "Ночь", weatherTypeImageName: "directionWind", percent: "С-В", lowTemperature: "3-6", highTemperature: "м/с")
+        let winterData: [Weather] = [
+            Weather(dayType: "Утро", weatherTypeImageName: "directionWind", percent: "С-В", lowTemperature: "3-6", highTemperature: "м/с"),
+            Weather(dayType: "День", weatherTypeImageName: "directionWind", percent: "С-В", lowTemperature: "3-6", highTemperature: "м/с"),
+            Weather(dayType: "Вечер", weatherTypeImageName: "directionWind", percent: "С-В", lowTemperature: "3-6", highTemperature: "м/с"),
+            Weather(dayType: "Ночь", weatherTypeImageName: "directionWind", percent: "С-В", lowTemperature: "3-6", highTemperature: "м/с")
         ]
     
-        let wetData: [WeatherData] = [
-            WeatherData(dayType: "Утро", weatherTypeImageName: "wetImage", percent: "Высокая", lowTemperature: "35%", highTemperature: ""),
-            WeatherData(dayType: "День", weatherTypeImageName: "wetImage", percent: "Высокая", lowTemperature: "35%", highTemperature: ""),
-            WeatherData(dayType: "Вечер", weatherTypeImageName: "wetImage", percent: "Высокая", lowTemperature: "35%", highTemperature: ""),
-            WeatherData(dayType: "Ночь", weatherTypeImageName: "wetImage", percent: "Высокая", lowTemperature: "35%", highTemperature: "")
+        let wetData: [Weather] = [
+            Weather(dayType: "Утро", weatherTypeImageName: "wetImage", percent: "Высокая", lowTemperature: "35%", highTemperature: ""),
+            Weather(dayType: "День", weatherTypeImageName: "wetImage", percent: "Высокая", lowTemperature: "35%", highTemperature: ""),
+            Weather(dayType: "Вечер", weatherTypeImageName: "wetImage", percent: "Высокая", lowTemperature: "35%", highTemperature: ""),
+            Weather(dayType: "Ночь", weatherTypeImageName: "wetImage", percent: "Высокая", lowTemperature: "35%", highTemperature: "")
         ]
     
-        let pressureData: [WeatherData] = [
-            WeatherData(dayType: "Утро", weatherTypeImageName: "", percent: "777", lowTemperature: "мм рт. ст.", highTemperature: ""),
-            WeatherData(dayType: "День", weatherTypeImageName: "", percent: "777", lowTemperature: "мм рт. ст.", highTemperature: ""),
-            WeatherData(dayType: "Вечер", weatherTypeImageName: "", percent: "777", lowTemperature: "мм рт. ст.", highTemperature: ""),
-            WeatherData(dayType: "Ночь", weatherTypeImageName: "", percent: "777", lowTemperature: "мм рт. ст.", highTemperature: "")
+        let pressureData: [Weather] = [
+            Weather(dayType: "Утро", weatherTypeImageName: "", percent: "777", lowTemperature: "мм рт. ст.", highTemperature: ""),
+            Weather(dayType: "День", weatherTypeImageName: "", percent: "777", lowTemperature: "мм рт. ст.", highTemperature: ""),
+            Weather(dayType: "Вечер", weatherTypeImageName: "", percent: "777", lowTemperature: "мм рт. ст.", highTemperature: ""),
+            Weather(dayType: "Ночь", weatherTypeImageName: "", percent: "777", lowTemperature: "мм рт. ст.", highTemperature: "")
         ]
 
         init() {
@@ -51,12 +52,17 @@ class DateController: BaseController {
         required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
+        override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            StatusBar().setStatusBar(for: self, with: .white, style: .darkContent)
+        }
+    
+
 }
 
 extension DateController {
     override func setupViews() {
         super.setupViews()
-
         view.setupView(scrollView)
         scrollView.setupView(contentView)
         contentView.addSubview(navBar)
@@ -67,7 +73,9 @@ extension DateController {
         contentView.addSubview(baseLightView)
         contentView.addSubview(constellationsTableView)
 
-        title = "Минск"
+//        scrollView.contentInsetAdjustmentBehavior = .never
+
+        self.navigationItem.title = "Минск"
         navigationController!.navigationBar.backgroundColor = .white
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
     }
@@ -76,7 +84,8 @@ extension DateController {
         super.constraintViews()
 
         scrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
         }
         
         contentView.snp.makeConstraints { make in

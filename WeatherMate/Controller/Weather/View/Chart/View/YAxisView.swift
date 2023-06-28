@@ -18,7 +18,7 @@ final class YAxisView: BaseView {
         return view
     }()
 
-    func configure(with data: [WMChartsView.Data]) {
+    func configure(with data: [WMChartView.Data]) {
         
         stackView.arrangedSubviews.forEach {
             $0.removeFromSuperview()

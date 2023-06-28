@@ -8,32 +8,21 @@
 import SnapKit
 import UIKit
 
-class WeatherInfoView: UIView {
+class WeatherInfoView: BaseView {
 
-    func configur(with info: WeatherModel) {
-        dateLable.text = "Сегодня"
-        typeWeatherLable.text = "Облачно"
-        temprichaLable.text = "-25\u{00B0}"
-        speedWindWeather.text = "9 м/с"
-        feelingWeather.text = "Ощущается как: -30\u{00B0}"
-        pressure.text = "732 мм рт.ст."
-        time.text = "Ночью -23\u{00B0}"
-    }
+    private var dateLable = UILabel(font: 21, textColor: .white)
+    private var typeWeatherLable = UILabel(font: 16, textColor: .white)
+    private var temprichaLable = UILabel(font: 76, textColor: .white)
+    private var speedWindWeather = UILabel(font: 19, textColor: .white)
+    private var feelingWeather = UILabel(font: 16, textColor: .white)
+    private var pressure = UILabel(font: 19, textColor: .white)
+    private var time = UILabel(font: 16, textColor: .white)
     
-    private var dateLable = UILabel(font: 21)
-    private var typeWeatherLable = UILabel(font: 16)
-    private var temprichaLable = UILabel(font: 76)
-    private var speedWindWeather = UILabel(font: 19)
-    private var feelingWeather = UILabel(font: 16)
-    private var pressure = UILabel(font: 19)
-    private var time = UILabel(font: 16)
-    
-//    private var cloudImage = UIImageView(named: "cloud")
     private var weatherWindImage = UIImageView(named: "weatherWind")
     private var directionWindImage = UIImageView(named: "directionWind")
     private var pressureImage = UIImageView(named: "pressure")
     private var locatonImage = UIImageView(named: "location")
-    
+
     private var cloudImage: UIImageView = {
         let imageView = UIImageView()
         let image = UIImage(named: "cloud")
@@ -48,23 +37,35 @@ class WeatherInfoView: UIView {
         imageView.clipsToBounds = false
         return imageView
     }()
-    
-
 
     init() {
         super.init(frame: .zero)
         initialize()
+
+        
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configur(with info: WeatherViewModel) {
+        dateLable.text = info.date
+        typeWeatherLable.text = info.weatherType
+        temprichaLable.text = info.temperature
+        speedWindWeather.text = info.windSpeed
+        feelingWeather.text = info.feelingTemperature
+        pressure.text = info.pressure
+        time.text = info.time
+    }
+
+    
+
 }
 
 private extension WeatherInfoView {
 
     func initialize() {
+        
         clipsToBounds = true
         backgroundColor = Resource.Color.weatherInfoViewBackground
         layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
@@ -72,36 +73,27 @@ private extension WeatherInfoView {
         addSubview(mauntainImage)
         mauntainImage.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview().inset(0)
-            make.top.equalToSuperview().inset(170)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top).inset(85)
         }
-        setupStackViewUp()
-        setupStackViewTemprichaCloud()
-        setupStackViewWetherWind()
-        setupStackViewPressure()
-    }
-    
-    func setupStackViewUp() {
+        
         let upStak = UIStackView()
-        upStak.axis = .horizontal
         upStak.addArrangedSubview(locatonImage)
         upStak.addArrangedSubview(dateLable)
         upStak.addArrangedSubview(typeWeatherLable)
         addSubview(upStak)
+        upStak.distribution = .fillProportionally
 
         dateLable.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(40)
-        }
-        typeWeatherLable.snp.makeConstraints { make in
-            make.left.equalTo(dateLable).offset(200)
+            make.trailing.equalToSuperview().inset(120)
         }
         upStak.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(16)
-            make.top.equalToSuperview().inset(100)
+            make.leading.trailing.equalToSuperview().inset(13)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top).inset(30)
             make.height.equalTo(30)
         }
-    }
-    
-    func setupStackViewTemprichaCloud() {
+//        typeWeatherLable.snp.makeConstraints { make in
+//            make.trailing.equalTo(upStak.snp.trailing).offset(2000)
+//        }
         let temprichaCloud = UIStackView()
         temprichaCloud.axis = .horizontal
         temprichaCloud.distribution = .fillProportionally
@@ -115,11 +107,9 @@ private extension WeatherInfoView {
         }
         temprichaCloud.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(28)
-            make.top.equalTo(self).inset(150)
+            make.top.equalTo(upStak.snp.bottom).inset(-15)
             make.height.equalTo(100)
         }
-    }
-    func setupStackViewWetherWind() {
         let wetherWind = UIStackView()
         let feelingWeatherStackView = UIStackView()
         let stackWetherWind = UIStackView()
@@ -146,8 +136,6 @@ private extension WeatherInfoView {
             make.top.equalTo(self).inset(250)
             make.height.equalTo(50)
         }
-    }
-    func setupStackViewPressure() {
         let pressureStackView = UIStackView()
         let timeStackView = UIStackView()
         let stackWetherPressure = UIStackView()
@@ -175,7 +163,10 @@ private extension WeatherInfoView {
             make.bottom.equalTo(self).inset(10)
             make.height.equalTo(50)
         }
+
     }
+
+    
 }
 
 
@@ -190,4 +181,3 @@ private extension UIImageView {
         
     }
 }
-

@@ -8,8 +8,10 @@
 import SnapKit
 import UIKit
 
-class WeatherGraphicRaineView: BaseView {
+class WeatherChartView: BaseView {
     
+    private let chartsView = WMChartView()
+    private let weatherViewModel = WeatherViewModel()
     var precipitationLabel: UILabel = {
         let label = UILabel()
         label.text = Resource.Strings.Weather.precipitation
@@ -26,11 +28,10 @@ class WeatherGraphicRaineView: BaseView {
         return imageView
     }()
     
-    private let chartsView = WMChartsView()
     
 }
 
-extension WeatherGraphicRaineView {
+extension WeatherChartView {
     override func setupViews() {
         super.setupViews()
         
@@ -68,13 +69,14 @@ extension WeatherGraphicRaineView {
     }
     
     override func configureAppearance() {
-        configure(with: [.init(value: 100, title: "Сейчас", percent: "100%"),
+        configure(with: [.init(value: Int(weatherViewModel.weatherDetails.first?.pop ?? 100), title: "Сейчас", percent: "100%"),
                                                 .init(value: 25, title: "15:55", percent: "25%"),
                                                 .init(value: 75, title: "16:55", percent: "75%"),
                                                 .init(value: 10, title: "17:55", percent: "10%")],
                                          topChartOffset: 4)
+        
     }
-    func configure(with itmes: [WMChartsView.Data], topChartOffset: Int) {
+    func configure(with itmes: [WMChartView.Data], topChartOffset: Int) {
         chartsView.configure(with: itmes, topChartOffset: topChartOffset)
     }
 }

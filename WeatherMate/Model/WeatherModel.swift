@@ -9,7 +9,7 @@ import UIKit
 
 struct WeatherModel {
     let date: String
-    let tempricha: Int
-    let speedWind: Int
-    let pressure: Int
+    let tempricha: String
+    let speedWind: String
+    let pressure: String
 }

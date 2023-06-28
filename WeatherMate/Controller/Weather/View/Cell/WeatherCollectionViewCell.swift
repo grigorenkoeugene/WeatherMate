@@ -11,19 +11,19 @@ import UIKit
 class WeatherCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var view: UIView!
-    
+    let weatherCollectionViewModel = WeatherCollectionViewModel()
     var stackView = UIStackView()
     var timeWeatherLabel: UILabel = {
-        let label = UILabel(font: 16)
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor = Resource.Color.thirdColor
         label.textAlignment = .center
-        label.textColor = .black
         return label
     }()
     
     var temprichaLabel: UILabel = {
-        let label = UILabel(font: 19)
+        let label = UILabel(font: 19, textColor: Resource.Color.thirdColor)
         label.textAlignment = .center
-        label.textColor = .black
         return label
     }()
     
@@ -34,8 +34,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
-        timeWeatherLabel.text = "Сейчас"
-        temprichaLabel.text = "-21 \u{00B0}C"
+
         stackView.addArrangedSubview(timeWeatherLabel)
         stackView.addArrangedSubview(cloudImage)
         stackView.addArrangedSubview(temprichaLabel)

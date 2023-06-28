@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension WMChartsView {
+extension WMChartView {
     struct Data {
         let value: Int
         let title: String
@@ -15,20 +15,20 @@ extension WMChartsView {
     }
 }
 
-final class WMChartsView: BaseView {
+final class WMChartView: BaseView {
 
     private let yAxisView = YAxisView()
     private let xAxisView = XAxisView()
     private let chartView = ChartView()
 
-    func configure(with data: [WMChartsView.Data], topChartOffset: Int = 4) {
+    func configure(with data: [WMChartView.Data], topChartOffset: Int = 4) {
         yAxisView.configure(with: data)
         xAxisView.configure(with: data)
         chartView.configure(with: data, topChartOffset: topChartOffset)
     }
 }
 
-extension WMChartsView {
+extension WMChartView {
     override func setupViews() {
         super.setupViews()
 
@@ -42,21 +42,21 @@ extension WMChartsView {
 
         yAxisView.snp.makeConstraints { make in
             make.leading.equalToSuperview()
-            make.top.equalToSuperview()
-            make.bottom.equalTo(xAxisView.snp.top).offset(-48)
+            make.top.equalToSuperview().inset(2)
+            make.bottom.equalTo(xAxisView.snp.top).offset(-38)
         }
         
         xAxisView.snp.makeConstraints { make in
-            make.leading.equalTo(yAxisView.snp.trailing).offset(20)
-            make.bottom.equalToSuperview().inset(10)
-            make.trailing.equalTo(chartView.snp.trailing).inset(0)
+            make.leading.equalTo(yAxisView.snp.trailing).offset(25)
+            make.bottom.equalToSuperview()
+            make.trailing.equalToSuperview().inset(5)
         }
         
         chartView.snp.makeConstraints { make in
             make.leading.equalTo(yAxisView.snp.trailing).offset(10)
             make.top.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().inset(20)
-            make.bottom.equalTo(xAxisView.snp.top).offset(-10)
+            make.bottom.equalTo(xAxisView.snp.top).inset(-10)
             
         }
     }

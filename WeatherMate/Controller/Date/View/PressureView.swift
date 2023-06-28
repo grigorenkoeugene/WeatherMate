@@ -17,7 +17,7 @@ class PressureView: BaseView {
     let tableView: StackWinterWetPressureTableView
 
     // Инициализация с данными
-    init(weatherData: [WeatherData]) {
+    init(weatherData: [Weather]) {
         self.tableView = StackWinterWetPressureTableView(data: weatherData)
         super.init(frame: .zero)
     }

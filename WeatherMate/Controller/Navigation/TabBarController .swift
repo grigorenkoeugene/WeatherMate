@@ -45,6 +45,7 @@ final class TabBarController: UITabBarController {
 
         weatherNavigaton.tabBarItem = weatherTabBarItem
         timeNavigaton.tabBarItem = timeTabBarItem
+
         mapNavigaton.tabBarItem = mapTabBarItem
         settingNavigaton.tabBarItem = settingTabBarItem
         
