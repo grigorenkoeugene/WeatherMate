@@ -13,35 +13,63 @@ class WeatherController: BaseController, UIScrollViewDelegate {
     let weatherAllDataViewModel = WeatherAllDataViewModel()
     let weatherCollectionViewModel = WeatherCollectionViewModel()
     let weatherInfoView = WeatherInfoView()
+    let weatherChartModelView = WeatherChartModelView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Минск"
         view.addSubview(scrollView)
         DispatchQueue.main.async {
-            self.weatherAllDataViewModel.fetchWeatherData { error in
-                if let error = error {
-                    print("Ошибка получения данных: \(error.localizedDescription)")
-                } else {
-                    let weatherDetails = self.weatherAllDataViewModel.getWeatherDetails()
-                    self.weatherCollectionViewModel.setWeatherData(weatherDetails)
-                    self.weatherViewModel.setWeatherData(weatherDetails)
+            self.weatherAllDataViewModel.fetchWeatherData { weatherData, error in
+                if let weatherData = weatherData {
+                    
+//                    let weatherDetails = self.weatherAllDataViewModel.getWeatherDetails()
+                    self.weatherCollectionViewModel.setWeatherData(weatherData)
+                    self.weatherViewModel.setWeatherData(weatherData)
+                    self.weatherChartModelView.setWeatherData(weatherData)
                     DispatchQueue.main.async { [weak self] in
                         guard let self = self else { return }
                         self.subViewWeather.configur(with: self.weatherViewModel)
                         self.weatherCollectionView.configure(with: self.weatherCollectionViewModel)
                         self.weatherCollectionView.reloadData()
-                        print("123", weatherDetails.first?.pop)
-                        self.weatherChartView.configure(with: [.init(value: Int(weatherDetails.first?.pop ?? 100), title: "Сейчас", percent: "100%"),
-                                                               .init(value: 25, title: "15:55", percent: "25%"),
-                                                               .init(value: 75, title: "16:55", percent: "75%"),
-                                                               .init(value: 10, title: "17:55", percent: "10%")],
+                        print("1234",self.weatherChartModelView.chanceOfRain.count)
+                        self.weatherChartView.configure(with: [.init(value: self.weatherChartModelView.chanceOfRain[0], title: "Сейчас", percent: "\(self.weatherChartModelView.chanceOfRain[0])%"),
+                                                               .init(value: self.weatherChartModelView.chanceOfRain[1], title: "\(self.weatherChartModelView.timeRain[1])", percent: "\(self.weatherChartModelView.chanceOfRain[1])%"),
+                                                               .init(value: self.weatherChartModelView.chanceOfRain[2], title: "\(self.weatherChartModelView.timeRain[2])", percent: "\(self.weatherChartModelView.chanceOfRain[2])%"),
+                                                               .init(value: self.weatherChartModelView.chanceOfRain[3], title: "\(self.weatherChartModelView.timeRain[3])", percent: "\(self.weatherChartModelView.chanceOfRain[3])%")],
                                                         topChartOffset: 4)
 
                     }
+                } else if let error = error {
+                    // Обработка ошибки
+                    print(error)
                 }
             }
         }
+//        DispatchQueue.main.async {
+//            self.weatherAllDataViewModel.fetchWeatherData { error in
+//                if let error = error {
+//                    print("Ошибка получения данных: \(error.localizedDescription)")
+//                } else {
+//                    let weatherDetails = self.weatherAllDataViewModel.getWeatherDetails()
+//                    self.weatherCollectionViewModel.setWeatherData(weatherDetails)
+//                    self.weatherViewModel.setWeatherData(weatherDetails)
+//                    DispatchQueue.main.async { [weak self] in
+//                        guard let self = self else { return }
+//                        self.subViewWeather.configur(with: self.weatherViewModel)
+//                        self.weatherCollectionView.configure(with: self.weatherCollectionViewModel)
+//                        self.weatherCollectionView.reloadData()
+//                        print("123", weatherDetails.first?.pop)
+//                        self.weatherChartView.configure(with: [.init(value: Int(weatherDetails.first?.pop ?? 100), title: "Сейчас", percent: "100%"),
+//                                                               .init(value: 25, title: "15:55", percent: "25%"),
+//                                                               .init(value: 75, title: "16:55", percent: "75%"),
+//                                                               .init(value: 10, title: "17:55", percent: "10%")],
+//                                                        topChartOffset: 4)
+//
+//                    }
+//                }
+//            }
+//        }
         scrollView.delegate = self
     }
     
@@ -68,12 +96,13 @@ class WeatherController: BaseController, UIScrollViewDelegate {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.setupScrollView()
         self.setupWeatherSubView()
         self.setupWeatherColectionView()
         self.setupWeatherGraphicRaineView()
         self.setupLightDayView()
         self.setupConstellationsTableView()
+        self.setupScrollView()
+
 
     }
 
@@ -124,7 +153,7 @@ class WeatherController: BaseController, UIScrollViewDelegate {
     private var contentSize: CGSize {
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
 
-        let allHeight = constellationsTableView.frame.maxY + tabBarHeight + 1000
+        let allHeight = constellationsTableView.frame.maxY + tabBarHeight + 500
         return CGSize(width: view.frame.width, height: allHeight)
     }
     

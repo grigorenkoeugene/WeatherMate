@@ -9,26 +9,19 @@ import Foundation
 
 class WeatherCollectionViewModel {
     
-    var weatherData: [WeatherDetails] = []
+    var weatherData: Welcome?
     var lastPrintedTimeWeather: String = ""
 
-    var timeWeather: String = "2" {
-        didSet {
-            // Выполните здесь любую необходимую логику при изменении значения timeWeather
-            print("Новое значение timeWeather: \(timeWeather)")
-            lastPrintedTimeWeather = timeWeather
-        }
-    }
-    func setWeatherData(_ weatherDetails: [WeatherDetails]) {
+    var timeWeather: String?
+    func setWeatherData(_ weatherDetails: Welcome) {
         self.weatherData = weatherDetails
-        self.timeWeather = calculateTimeWeather()
-
+//        self.timeWeather = calculateTimeWeather()
     }
 
-    private func calculateTimeWeather() -> String {
-        guard let pressure = weatherData.first?.main.pressure else {
-            return "1"
-        }
-        return "\(String(describing: Int(pressure))) мм рт.ст."
-    }
+//    private func calculateTimeWeather() -> String {
+//        guard let pressure = weatherData?.current.tempC else {
+//            return "1"
+//        }
+//        return "\(String(describing: Int(pressure))) мм рт.ст."
+//    }
 }

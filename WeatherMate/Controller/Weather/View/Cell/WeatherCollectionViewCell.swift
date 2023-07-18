@@ -45,16 +45,12 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         }
         self.layer.cornerRadius = 16
     }
-    
-    
 
-}
-
-private extension UIImageView {
-    convenience init(named: String) {
-        self.init()
-        self.image = UIImage(named: named)
-        self.contentMode = .scaleAspectFit
-        
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.accessibilityContainerType = .none
     }
+    
+
 }
+

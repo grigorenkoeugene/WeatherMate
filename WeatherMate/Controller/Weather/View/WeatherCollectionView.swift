@@ -48,7 +48,7 @@ private extension WeatherCollectionView {
 
 extension WeatherCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        6
+        10
         
     }
     
@@ -56,31 +56,40 @@ extension WeatherCollectionView: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? WeatherCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
-        let weatherDetails = weatherCollectionViewModel?.weatherData[indexPath.item]
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss" // Формат времени в weatherDetails?.dtTxt
+        guard let forecast = weatherCollectionViewModel?.weatherData?.forecast else {
+            return cell
+        }
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let previousHour = calendar.date(byAdding: .hour, value: -1, to: currentDate)!
 
-        if let dtTxt = weatherDetails?.dtTxt,
-           let date = dateFormatter.date(from: dtTxt) {
-            dateFormatter.dateFormat = "HH:mm" // Желаемый формат времени (часы:минуты)
-            let timeString = dateFormatter.string(from: date)
-            if indexPath.row == 0 {
-                cell.timeWeatherLabel.text = "Сейчас"
-                
-            } else {
-                cell.timeWeatherLabel.text = timeString
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        var forecastHours: [Hour] = []
+        let maxHoursAhead = 10
+            
+        for forecastDay in forecast.forecastday {
+            for forecastHour in forecastDay.hour {
+                if let forecastDate = dateFormatter.date(from: forecastHour.time), forecastDate >= previousHour {
+                    forecastHours.append(forecastHour)
+                    if forecastHours.count >= maxHoursAhead {
+                        let date = dateFormatter.date(from: forecastHours[indexPath.row].time)!
+                        dateFormatter.dateFormat = "HH:mm"
+                        let timeString = dateFormatter.string(from: date)
+                        if indexPath.row == 0 {
+                            cell.timeWeatherLabel.text = "Сейчас"
+                            
+                        } else {
+                            cell.timeWeatherLabel.text = timeString
+                        }
+                        cell.temprichaLabel.text = "\(Int(forecastHours[indexPath.row].tempC.rounded()))°C"
+                        return cell
+                    }
+                }
             }
-        } else {
-            cell.timeWeatherLabel.text = ""
         }
-        if let temperature = weatherDetails?.main.temp {
-            let temperatureString = String(format: "%.0f", temperature - 273)
-            cell.temprichaLabel.text = "\(temperatureString)\u{00B0}С"
-        } else {
-            cell.temprichaLabel.text = ""
-        }
+        
+
         return cell
     }
 }

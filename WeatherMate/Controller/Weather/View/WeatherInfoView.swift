@@ -19,17 +19,11 @@ class WeatherInfoView: BaseView {
     private var time = UILabel(font: 16, textColor: .white)
     
     private var weatherWindImage = UIImageView(named: "weatherWind")
-    private var directionWindImage = UIImageView(named: "directionWind")
+    private var directionWindImage = UIImageView()
     private var pressureImage = UIImageView(named: "pressure")
     private var locatonImage = UIImageView(named: "location")
 
-    private var cloudImage: UIImageView = {
-        let imageView = UIImageView()
-        let image = UIImage(named: "cloud")
-        imageView.image = image
-        imageView.contentMode = .scaleAspectFill
-        return imageView
-    }()
+    private var cloudImage = UIImageView()
     private var mauntainImage: UIImageView = {
         let imageView = UIImageView()
         let image = UIImage(named: "mountain")
@@ -56,6 +50,15 @@ class WeatherInfoView: BaseView {
         feelingWeather.text = info.feelingTemperature
         pressure.text = info.pressure
         time.text = info.time
+        if let image = info.directionWindImage {
+            directionWindImage.image = image.withRenderingMode(.alwaysTemplate)
+            directionWindImage.tintColor = .white
+            directionWindImage.contentMode = .scaleAspectFit
+        }
+        if let image = info.weatherTypeImage {
+            cloudImage.image = image
+            cloudImage.contentMode = .scaleAspectFit
+        }
     }
 
     
@@ -108,7 +111,7 @@ private extension WeatherInfoView {
         temprichaCloud.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(28)
             make.top.equalTo(upStak.snp.bottom).inset(-15)
-            make.height.equalTo(100)
+            make.height.equalTo(70)
         }
         let wetherWind = UIStackView()
         let feelingWeatherStackView = UIStackView()
@@ -170,14 +173,3 @@ private extension WeatherInfoView {
 }
 
 
-
-private extension UIImageView {
-    convenience init(named: String) {
-        self.init()
-        self.image = UIImage(named: named)
-        self.image = self.image!.withRenderingMode(.alwaysTemplate)
-        self.tintColor = .white
-        self.contentMode = .scaleAspectFit
-        
-    }
-}

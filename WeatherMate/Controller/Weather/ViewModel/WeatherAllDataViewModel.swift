@@ -8,20 +8,20 @@
 import Foundation
 
 class WeatherAllDataViewModel {
-    private var weatherDetails: [WeatherDetails] = []
-    private let requestServer = RequestServer()
-    
-    func fetchWeatherData(completion: @escaping (Error?) -> Void) {
+    private var weatherDetails: Welcome?
+        private let requestServer = RequestServer()
+        
+    func fetchWeatherData(completion: @escaping (Welcome?, Error?) -> Void) {
         requestServer.fetchWeatherData { [weak self] weatherData, error in
             if let weatherData = weatherData {
-                self?.weatherDetails.append(contentsOf: weatherData)
-                completion(nil)
+                self?.weatherDetails = weatherData
+                completion(weatherData, nil)
             } else {
-                completion(error)
+                completion(nil, error)
             }
         }
     }
-    func getWeatherDetails() -> [WeatherDetails] {
+    func getWeatherDetails() -> Welcome? {
         return weatherDetails
     }
 }

@@ -11,7 +11,8 @@ import UIKit
 class WeatherChartView: BaseView {
     
     private let chartsView = WMChartView()
-    private let weatherViewModel = WeatherViewModel()
+    private let weatherChartModelView = WeatherChartModelView()
+    
     var precipitationLabel: UILabel = {
         let label = UILabel()
         label.text = Resource.Strings.Weather.precipitation
@@ -27,8 +28,6 @@ class WeatherChartView: BaseView {
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-    
-    
 }
 
 extension WeatherChartView {
@@ -69,13 +68,16 @@ extension WeatherChartView {
     }
     
     override func configureAppearance() {
-        configure(with: [.init(value: Int(weatherViewModel.weatherDetails.first?.pop ?? 100), title: "Сейчас", percent: "100%"),
-                                                .init(value: 25, title: "15:55", percent: "25%"),
-                                                .init(value: 75, title: "16:55", percent: "75%"),
-                                                .init(value: 10, title: "17:55", percent: "10%")],
-                                         topChartOffset: 4)
+        DispatchQueue.main.async {
+            self.configure(with: [.init(value: self.weatherChartModelView.chanceOfRain[0], title: "Сейчас", percent: "100%"),
+                                                        .init(value: 25, title: "15:55", percent: "25%"),
+                                                        .init(value: 75, title: "16:55", percent: "75%"),
+                                                        .init(value: 10, title: "17:55", percent: "10%")],
+                                                 topChartOffset: 4)
+        }
         
     }
+    
     func configure(with itmes: [WMChartView.Data], topChartOffset: Int) {
         chartsView.configure(with: itmes, topChartOffset: topChartOffset)
     }

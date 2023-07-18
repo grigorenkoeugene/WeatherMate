@@ -121,7 +121,7 @@ extension ChartView {
         }
         
         let chartPath = UIBezierPath()
-        chartPath.move(to: points[0])
+        fetchWeatherData        chartPath.move(to: points[0])
         drawChartDot(at: points[0])
         
         for i in 0..<points.count - 1 {
